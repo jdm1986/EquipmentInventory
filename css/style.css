@@ -5,3 +5,17 @@
 .navbar-default .navbar-toggle:hover {
 	background-color: transparent;
 }
+
+body, html {
+	height: 100%;
+}
+
+.bgimg {
+	
+	height: 100%;
+	background-image: url('../img/hero.jpg');
+	backgorund-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
