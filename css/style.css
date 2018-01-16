@@ -1,0 +1,7 @@
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #F8F8F8;
+}
+
+.navbar-default .navbar-toggle:hover {
+	background-color: transparent;
+}
