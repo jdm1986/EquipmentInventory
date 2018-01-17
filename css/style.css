@@ -22,19 +22,27 @@ body, html {
 
 .slice {
 	width: 100%;
+
+}
+
+.wide-photo {
+	position: relative;
 }
 
 .main-contain {
 	z-index: 10;
-	/*position: relative;*/
+	/*position: absolute;*/
+	top: 135px;
 	background-color: #c51625;
 	width: 100%;
 	overflow: auto;
+	/*opacity: 0.5;*/
+	
 }
 
 
 .main-copy {
-	/*position: absolute;*/
+
 	text-align: center;
 	color: #f8f8f8;
 
