@@ -1,37 +1,59 @@
-﻿using System;
+﻿using EquipmentInventory.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using EquipmentInventory.Models;
-
 
 namespace EquipmentInventory.Controllers
 {
     public class MachineController : Controller
     {
-        // GET: Machine
+        public static List<Machine> Machines = new List<Machine>
+                    {
+                        new Machine { EquipId = 1, EquipMake = "CAT", EquipModel = "D8"},
+                        new Machine { EquipId = 2, EquipMake = "CAT", EquipModel = "D5K LGP"},
+                        new Machine { EquipId = 3, EquipMake = "CAT", EquipModel = "420E IT"},
+                        new Machine { EquipId = 4, EquipMake = "Deere", EquipModel = "250G"},
+                        new Machine { EquipId = 5, EquipMake = "Deere", EquipModel = "9520"},
+                        new Machine { EquipId = 6, EquipMake = "Deere", EquipModel = "1810"},
+                        new Machine { EquipId = 7, EquipMake = "Takeuchi", EquipModel = "TB1140"},
+                        new Machine { EquipId = 8, EquipMake = "Takeuchi", EquipModel = "TB290"},
+                        new Machine { EquipId = 9, EquipMake = "Takeuchi", EquipModel = "TL10"},
+                    };
+
         public ActionResult Index()
         {
             var machineList = new MachineListViewModel
             {
-                Machines = new List<MachineViewModel>
+                
+                Machines = Machines.Select(m => new MachineViewModel
                 {
-                    new MachineViewModel { EquipId = 1, EquipMake = "CAT", EquipModel = "D8"},
-                    new MachineViewModel { EquipId = 2, EquipMake = "CAT", EquipModel = "D5K LGP"},
-                    new MachineViewModel { EquipId = 3, EquipMake = "CAT", EquipModel = "420E IT"},
-                    new MachineViewModel { EquipId = 4, EquipMake = "Deere", EquipModel = "250G"},
-                    new MachineViewModel { EquipId = 5, EquipMake = "Deere", EquipModel = "9520"},
-                    new MachineViewModel { EquipId = 6, EquipMake = "Deere", EquipModel = "1810"},
-                    new MachineViewModel { EquipId = 7, EquipMake = "Takeuchi", EquipModel = "TB1140"},
-                    new MachineViewModel { EquipId = 8, EquipMake = "Takeuchi", EquipModel = "TB290"},
-                    new MachineViewModel { EquipId = 9, EquipMake = "Takeuchi", EquipModel = "TL10"},
-
-                }
+                    EquipId = m.EquipId,
+                    EquipMake = m.EquipMake,
+                    EquipModel = m.EquipModel
+                }).ToList()
             };
+
             machineList.TotalMachines = machineList.Machines.Count;
 
             return View(machineList);
+        }
+
+        public ActionResult MachineDetail(int id)
+        {
+            var machine = Machines.SingleOrDefault(m => m.EquipId == id);
+            if (machine != null)
+            {
+                var machineViewModel = new MachineViewModel
+                {
+                    EquipId = machine.EquipId,
+                    EquipMake = machine.EquipMake,
+                    EquipModel = machine.EquipModel
+                };
+
+                return View(machineViewModel);
+            }
+
+            return new HttpNotFoundResult();
         }
     }
 }

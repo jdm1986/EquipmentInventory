@@ -16,6 +16,7 @@
 		{
 			<tr>
 				<td>@Model.Machines[i].MakeModel</td>
+				<td>@Html.ActionLink("Machine Detail", "MachineDetail", new { id = Model.Machines[i].EquipId })</td>
 			</tr>
 		}
 	</tbody>

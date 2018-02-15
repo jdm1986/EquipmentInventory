@@ -1,0 +1,20 @@
+﻿@model EquipmentInventory.Models.MachineViewModel
+@{
+	ViewBag.Title = "Machine Detail";
+}
+
+<h2>@Model.MakeModel</h2>
+
+<div class="row">
+	<div class="col-sm-12 form-group">
+		@Html.LabelFor(m => m.EquipMake)
+		<br />@Html.DisplayFor(m => m.EquipMake)
+	</div>
+	<div class="col-sm-12 form-group">
+		@Html.LabelFor(m => m.EquipModel)
+		<br />@Html.DisplayFor(m => m.EquipModel)
+	</div>
+	<div class="col-sm-12">
+		@Html.ActionLink("Done", "Index", null, new { @class = "btn btn-primary" })
+	</div>
+</div>
