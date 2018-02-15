@@ -4,18 +4,36 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>@ViewBag.Title</title>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		  rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-		  crossorigin="anonymous">
+	<link href="~/Content/bootstrap.css" rel="stylesheet">
+	<link href="~/Content/Site.css" rel="stylesheet">
 	@Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
 	<div class="container">
-		<h1>JOB Rentals & Sales Equipment Inventory</h1>
+		<nav class="navbar navbar-default navbar-fixed-top" id="nav-cont">
+			<div class="container-fluid">
+				<div class="navbar-header"
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#standardsize">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					@Html.ActionLink("JOB Rentals & Sales", "Index", "Home", null, new { @class = "navbar-brand"})
+					
+				</div>
+				<div class="collapse navbar-collapse" id="standardsize">
+					<ul class="nav navbar-nav" id="nav-list">
+						<li>@Html.ActionLink("Machine List", "Index", "Machine")</li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
 		<div>@RenderBody()</div>
-		<footer>Equipment Inventory &copy; @DateTime.Now.Year JOB Rentals & Sales, LLC</footer>
+
 	</div>
+	<footer class="navbar-fixed-bottom">Equipment Inventory &copy; @DateTime.Now.Year JOB Rentals & Sales, LLC</footer">
 
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"

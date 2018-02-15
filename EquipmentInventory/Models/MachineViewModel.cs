@@ -10,6 +10,8 @@ namespace EquipmentInventory.Models
         public int? EquipId { get; set; }
         public string EquipMake { get; set; }
         public string EquipModel { get; set; }
+        public int? Weight { get; set; }
+
         public string MakeModel => EquipMake + " " + EquipModel;
     }
 }
