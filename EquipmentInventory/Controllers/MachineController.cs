@@ -55,5 +55,78 @@ namespace EquipmentInventory.Controllers
 
             return new HttpNotFoundResult();
         }
+
+        public ActionResult MachineAdd()
+        {
+            var machineViewModel = new MachineViewModel();
+
+            return View("AddEditMachine", machineViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddMachine(MachineViewModel machineViewModel)
+        {
+            var nextMachineId = Machines.Max(m => m.EquipId) + 1;
+
+            var machine = new Machine
+            {
+                EquipId = nextMachineId,
+                EquipMake = machineViewModel.EquipMake,
+                EquipModel = machineViewModel.EquipModel
+            };
+
+            Machines.Add(machine);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult MachineEdit(int id)
+        {
+            var machine = Machines.SingleOrDefault(m => m.EquipId == id);
+            if (machine != null)
+            {
+                var machineViewModel = new MachineViewModel
+                {
+                    EquipId = machine.EquipId,
+                    EquipMake = machine.EquipMake,
+                    EquipModel = machine.EquipModel
+                };
+
+                return View("AddEditMachine", machineViewModel);
+            }
+
+            return new HttpNotFoundResult();
+        }
+
+        [HttpPost]
+        public ActionResult EditMachine(MachineViewModel machineViewModel)
+        {
+            var machine = Machines.SingleOrDefault(m => m.EquipId == machineViewModel.EquipId);
+
+            if (machine != null)
+            {
+                machine.EquipMake = machineViewModel.EquipMake;
+                machine.EquipMake = machineViewModel.EquipModel;
+
+                return RedirectToAction("Index");
+            }
+
+            return new HttpNotFoundResult();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteMachine(MachineViewModel machineViewModel)
+        {
+            var machine = Machines.SingleOrDefault(m => m.EquipId == machineViewModel.EquipId);
+
+            if (machine != null)
+            {
+                Machines.Remove(machine);
+
+                return RedirectToAction("Index");
+            }
+
+            return new HttpNotFoundResult();
+        }
     }
 }

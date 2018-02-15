@@ -12,5 +12,9 @@ namespace EquipmentInventory.Models
         public string EquipModel { get; set; }
         public int Weight { get; set; }
 
+        internal static object SingleOrDefault(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
